@@ -19,14 +19,14 @@ public class DepartamentoController {
     private DepartamentoService departamentoService;
 
     @GetMapping
-    public ResponseEntity<List<DepartamentoModel>> findAll(){
-        List<DepartamentoModel> requisicao = departamentoService.findAll();
+    public ResponseEntity<List<DepartamentoModel>> buscarTodosOsDepartamentos(){
+        List<DepartamentoModel> requisicao = departamentoService.buscarTodosDepartamentos();
         return ResponseEntity.ok().body(requisicao);
     }
 
     @PostMapping
-    public ResponseEntity<DepartamentoModel> criarPessoa(@RequestBody DepartamentoModel departamentoModel){
-        DepartamentoModel requisicao = departamentoService.criarPessoa(departamentoModel);
+    public ResponseEntity<DepartamentoModel> criarDepartamentos(@RequestBody DepartamentoModel departamentoModel){
+        DepartamentoModel requisicao = departamentoService.criarDepartamentos(departamentoModel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
                 .path("/{id}").buildAndExpand(departamentoModel.getId())
                 .toUri();
@@ -34,18 +34,18 @@ public class DepartamentoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar (@PathVariable Long id){
-        departamentoService.deletar(id);
+    public ResponseEntity<?> deletarDepartamentos(@PathVariable Long id){
+        departamentoService.deletarDepartamentos(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
-    public Optional<DepartamentoModel> buscarId(@PathVariable Long id){
-        return departamentoService.buscarId(id);
+    public Optional<DepartamentoModel> buscarDepartamentoPeloId(@PathVariable Long id){
+        return departamentoService.buscarDepartamentoId(id);
     }
 
     @PutMapping("/{id}")
-    public DepartamentoModel atualizar(@PathVariable Long id, @RequestBody DepartamentoModel departamentoModel){
-        return departamentoService.atualizar(id, departamentoModel);
+    public DepartamentoModel atualizarDepartamentos(@PathVariable Long id, @RequestBody DepartamentoModel departamentoModel){
+        return departamentoService.atualizarDepartamentos(id, departamentoModel);
     }
 }
